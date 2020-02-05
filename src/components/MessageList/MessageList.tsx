@@ -1,35 +1,20 @@
 import React from 'react'
+import Message from '~cm/Message'
 
-const FISH_DATA = [
-   {
-      user: 'Marian',
-      text: 'Hi. How are you today?'
-   },
-   {
-      user: 'Some girl',
-      text: 'Great! Weather is excellent!'
-   },
-   {
-      user: 'Marian',
-      text: 'Wanna drink some tea or whatever?'
-   },
-   {
-      user: 'Some girl',
-      text: 'Sure why not'
-   }
-]
-
-export default function MessageList(props) {
-   return (
-      <div className="message-list">
-         {FISH_DATA.map((message, index) => {
-            return (
-               <div key={index} className="message">
-                     <div className="message-username">{message.user}</div>
-                     <div className="message-text">{message.text}</div>
-               </div>
-            )
-         })}
-      </div>
-   )
+interface ListProps {
+   messages: object[]
 }
+
+const MessageList: React.FC<ListProps> = ({ messages }) => (
+   <div className="message-list">
+      {messages.map((message: object, index: number) => (
+         <Message
+            key={index}
+            username={message.senderId}
+            text={message.parts[0].payload.content}
+         />
+      ))}
+   </div>
+)
+
+export default MessageList

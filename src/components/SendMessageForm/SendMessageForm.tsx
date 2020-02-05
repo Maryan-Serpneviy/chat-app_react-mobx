@@ -1,12 +1,37 @@
 import React from 'react'
+import { withStore } from '~hoc/withStore'
 
-export default function SendMessageForm(props) {
+interface FormProps {
+   store: object
+}
+
+interface Store {
+   newMessageText: string
+   handleInput: (text: string) => void
+}
+
+const SendMessageForm: React.FC<FormProps> = (props) => {
+   const store: Store = props.store
+
+   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      store.handleInput(event.target.value)
+   }
+
+   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      console.log(store.newMessageText)
+   }
+
    return (
-      <form className="send-message-form">
+      <form onSubmit={handleSubmit} className="send-message-form">
          <input
-            placeholder="SendMessageForm"
+            value={store.newMessageText}
+            onChange={handleChange}
+            placeholder="Write a message..."
             type="text"
          />
       </form>
    )
 }
+
+export default withStore(SendMessageForm)
