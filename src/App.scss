@@ -1,8 +1,9 @@
-$main-color: #5ea3d0;
-$secondary-color: white;
-$main-text-color: #3e5869;
-$secondary-text-color: #b0c7d6;
-$send-message-form: #F5F5F5;
+@import "./assets/scss/utils/variables";
+
+@font-face {
+	font-family: "Caviar Dreams";
+	src: url("./assets/fonts/Caviar-Dreams/CaviarDreams.ttf");
+}
 
 html, body {
    height: 100%;
@@ -10,7 +11,9 @@ html, body {
    padding: 0;
    font-family: system-ui;
    font-weight: 200;
-   color: 	#3e5869; 
+   color: #3e5869;
+   font-family: $main-font;
+   letter-spacing: 0.05em;
 }
 
 #root {
@@ -45,41 +48,6 @@ html, body {
 
 .send-message-form {
    grid-area: f;
-}
-
-// ROOMS LIST
-.rooms-list {
-   box-sizing: border-box;
-   padding: 10px;
-   background-color: $main-color;
-   overflow: scroll;
-   height: 100%;
-}
-
-.rooms-list > ul {
-   list-style-type: none;    
-   padding: 0;
-   overflow: scoll;
-}
-
-.rooms-list li {
-   margin: 10px 0;
-}
-
-.rooms-list > h3 {
-   margin: 5px 0;
-   color: $secondary-color;
-}
-
-.rooms-list .room a {
-   color: $secondary-text-color;
-   font-weight: 600;
-   text-decoration: none;
-   
-}
-
-.rooms-list .room.active a {
-   color: $secondary-color;
 }
 
 .new-room-form {

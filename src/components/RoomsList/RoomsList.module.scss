@@ -1,0 +1,39 @@
+@import "../../assets/scss/utils/variables";
+
+.wrapper {
+   box-sizing: border-box;
+   padding: 10px;
+   background-color: $main-color;
+   overflow: scroll;
+   height: 100vh;
+}
+
+.list {
+   list-style-type: none;    
+   padding: 0;
+   overflow: scoll;
+}
+
+.item {
+   margin: 10px 0;
+}
+
+.heading {
+   margin: 5px 0;
+   color: $secondary-color;
+   text-align: center;
+}
+
+.link {
+   font-size: large;
+   color: $secondary-text-color;
+   font-weight: 600;
+   text-decoration: none;
+   &.active {
+      color: $secondary-color;
+   }
+   &:hover {
+      color: rgb(214, 237, 252);
+      transition: color 0.3s ease;
+   }
+}

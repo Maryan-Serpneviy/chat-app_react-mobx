@@ -9,11 +9,19 @@ export default class Store {
 
    @observable messages: object[] = []
    @observable newMessageText: string = ''
+   @observable joinableRooms: []
 
    @action connectUser(): void {
       this.chatManager.connect()
       .then((currentUser) => {
          this.currentUser = currentUser
+
+         this.currentUser.getJoinableRooms()
+         .then(() => this.getRooms())
+         .catch(error => {
+            console.error(`Error getting joinable rooms \n ${error}`)
+         })
+
          this.currentUser.subscribeToRoomMultipart({
             roomId: this.room.work,
             hooks: {
@@ -40,5 +48,9 @@ export default class Store {
          text: this.newMessageText,
          roomId
       })
+   }
+
+   @action getRooms(): void {
+      this.joinableRooms = this.currentUser.rooms
    }
 }

@@ -1,28 +1,29 @@
-import React, { Component } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { withStore } from '~hoc/withStore'
 import RoomList from '~cm/RoomsList'
 import MessageList from '~cm/MessageList'
 import SendMessageForm from '~cm/SendMessageForm'
 import NewRoomForm from '~cm/NewRoomForm'
 
-@withStore
-export default class Main extends Component {
-   readonly store = this.props.store.store
+const Main: React.FC = props => {
+   const store = props.store.store
+   const { messages, joinableRooms } = store
 
-   render() {
-      const { messages } = this.store
+   useEffect(() => {
+      store.connectUser()
+   }, [])
 
-      return (
+   return useMemo(
+      () => (
          <div className="app">
-            <RoomList />
+            <RoomList rooms={joinableRooms} />
             <MessageList messages={messages} />
             <SendMessageForm />
             <NewRoomForm />
          </div>
-      )
-   }
-
-   componentDidMount() {
-      this.store.connectUser()
-   }
+      ),
+      [joinableRooms]
+   )
 }
+
+export default withStore(Main)
