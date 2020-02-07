@@ -6,15 +6,14 @@ import SendMessageForm from '~cm/SendMessageForm'
 import NewRoomForm from '~cm/NewRoomForm'
 
 const Main: React.FC = props => {
-   const store = props.store.store
+   const store = props.store.main
    const { messages, joinableRooms } = store
-
+   
    useEffect(() => {
       store.connectUser()
    }, [])
 
-   return useMemo(
-      () => (
+   return useMemo(() => (
          <div className="app">
             <RoomList rooms={joinableRooms} />
             <MessageList messages={messages} />
@@ -22,7 +21,7 @@ const Main: React.FC = props => {
             <NewRoomForm />
          </div>
       ),
-      [joinableRooms]
+      [joinableRooms, messages]
    )
 }
 

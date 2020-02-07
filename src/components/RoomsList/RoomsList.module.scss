@@ -1,21 +1,19 @@
 @import "../../assets/scss/utils/variables";
 
-.wrapper {
+.rooms {
    box-sizing: border-box;
    padding: 10px;
    background-color: $main-color;
    overflow: scroll;
-   height: 100vh;
-}
-
-.list {
-   list-style-type: none;    
-   padding: 0;
-   overflow: scoll;
-}
-
-.item {
-   margin: 10px 0;
+   grid-area: r;
+   ul {
+      list-style-type: none;    
+      padding: 0;
+      overflow: scoll;
+   }
+   li {
+      margin: 10px 0;
+   }
 }
 
 .heading {

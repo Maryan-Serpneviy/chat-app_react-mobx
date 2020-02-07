@@ -11,7 +11,7 @@ interface Store {
 }
 
 const SendMessageForm: React.FC<FormProps> = (props) => {
-   const store: Store = props.store.store
+   const store: Store = props.store.main
    const messageInput = useRef(null)
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
