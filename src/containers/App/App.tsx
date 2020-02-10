@@ -10,16 +10,17 @@ const Main: React.FC = props => {
    const { messages, joinableRooms } = store
    
    useEffect(() => {
+      window.location.replace('#/')
       store.connectUser()
    }, [])
 
    return useMemo(() => (
-         <div className="app">
-            <RoomList rooms={joinableRooms} />
-            <MessageList messages={messages} />
-            <SendMessageForm />
-            <NewRoomForm />
-         </div>
+      <div className="app">
+         <RoomList rooms={joinableRooms} />
+         <MessageList messages={messages} />
+         <SendMessageForm />
+         <NewRoomForm />
+      </div>
       ),
       [joinableRooms, messages]
    )

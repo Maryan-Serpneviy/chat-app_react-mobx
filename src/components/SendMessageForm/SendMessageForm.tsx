@@ -8,17 +8,18 @@ interface FormProps {
 interface Store {
    newMessageText: string
    handleInput: (text: string) => void
+   sendMessage: () => void
 }
 
-const SendMessageForm: React.FC<FormProps> = (props) => {
+const SendMessageForm: React.FC<FormProps> = props => {
    const store: Store = props.store.main
    const messageInput = useRef(null)
 
-   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       store.handleInput(event.target.value)
    }
 
-   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       store.sendMessage()
       messageInput.current.value = ''

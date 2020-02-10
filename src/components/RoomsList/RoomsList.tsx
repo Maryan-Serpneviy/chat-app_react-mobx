@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import { withStore } from '~hoc/withStore'
 import styles from './RoomsList.module.scss'
 
 interface Rooms {
-   rooms: object
+   rooms: object[]
 }
 
 const RoomsList: React.FC<Rooms> = ({ rooms, ...props }) => (
@@ -15,7 +15,7 @@ const RoomsList: React.FC<Rooms> = ({ rooms, ...props }) => (
             <li key={room.id} className={styles.room}>
                <NavLink
                   activeClassName={styles.active}
-                  onClick={() => props.store.main.joinRoom(room.id)}
+                  onClick={() => props.store.main.subscribeToRoom(room.id)}
                   to={room.name}
                   className={styles.link}
                ># {room.name}</NavLink>
