@@ -1,17 +1,7 @@
 import React, { useRef } from 'react'
 import { withStore } from '~hoc/withStore'
 
-interface FormProps {
-   store: object
-}
-
-interface Store {
-   newMessageText: string
-   handleInput: (text: string) => void
-   sendMessage: () => void
-}
-
-const SendMessageForm: React.FC<FormProps> = props => {
+const SendMessageForm: React.FC<Props> = props => {
    const store: Store = props.store.main
    const messageInput = useRef(null)
 
@@ -37,6 +27,16 @@ const SendMessageForm: React.FC<FormProps> = props => {
          />
       </form>
    )
+}
+
+interface Props {
+   store: object
+}
+
+interface Store {
+   newMessageText: string
+   handleInput: (text: string) => void
+   sendMessage: () => void
 }
 
 export default withStore(SendMessageForm)

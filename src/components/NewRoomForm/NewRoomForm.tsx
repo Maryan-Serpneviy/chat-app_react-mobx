@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
 import { withStore } from '~hoc/withStore'
 
-const NewRoomForm = props => {
-   const store = props.store.main
+const NewRoomForm: React.FC<Props> = props => {
+   const store: Store = props.store.main
    const input = useRef(null)
    
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +29,16 @@ const NewRoomForm = props => {
          </form>
       </div>
    )
+}
+
+interface Props {
+   store: object
+}
+
+interface Store {
+   newRoom: string
+   handleNewRoom: (value: string) => void
+   createRoom: () => void
 }
 
 export default withStore(NewRoomForm)

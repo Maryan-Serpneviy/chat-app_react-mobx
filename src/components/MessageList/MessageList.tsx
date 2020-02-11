@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react'
+import PropTypes, { InferProps } from 'prop-types'
 import Message from '~cm/Message'
 
-interface ListProps {
-   messages: object[]
-}
-
-const MessageList: React.FC<ListProps> = ({ messages }) => {
+const MessageList: React.FC<Props> = ({ messages }: InferProps<typeof MessageList.propTypes>) => {
    useEffect(() => {
       window.scrollTo({
          top: document.body.scrollHeight,
@@ -24,6 +21,14 @@ const MessageList: React.FC<ListProps> = ({ messages }) => {
          ))}
       </div>
    )
+}
+
+MessageList.propTypes = {
+   messages: PropTypes.array.isRequired
+}
+
+interface Props {
+   messages: object[]
 }
 
 export default MessageList

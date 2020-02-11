@@ -1,13 +1,10 @@
 import React from 'react'
+import PropTypes, { InferProps } from 'prop-types'
 import { NavLink, withRouter } from 'react-router-dom'
 import { withStore } from '~hoc/withStore'
 import styles from './RoomsList.module.scss'
 
-interface Rooms {
-   rooms: object[]
-}
-
-const RoomsList: React.FC<Rooms> = ({ rooms, ...props }) => (
+const RoomsList: React.FC<Props> = ({ rooms, ...props }: InferProps<typeof RoomsList.propTypes>) => (
    <div className={styles.rooms}>
       <ul>
          <h3 className={styles.heading}>Your rooms:</h3>
@@ -24,5 +21,13 @@ const RoomsList: React.FC<Rooms> = ({ rooms, ...props }) => (
       </ul>
    </div>
 )
+
+interface Props {
+   rooms: object[]
+}
+
+RoomsList.propTypes = {
+   rooms: PropTypes.array.isRequired
+}
 
 export default withStore(withRouter(RoomsList))
